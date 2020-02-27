@@ -11,6 +11,8 @@ from email.mime.text import MIMEText
 from email.utils import COMMASPACE, formatdate
 
 BASE_PATH = '/home/pi/scripts/Motion/images/'
+GMAIL_U = 'john.christian.private@gmail.com'
+GMAIL_P = 'xxxxxxxxxxxxxxxxxxxxxxx'
 
 import smtplib
 import os.path as op
@@ -22,7 +24,7 @@ from email import encoders
 
 
 def send_mail(send_from, send_to, subject, message, files=[],
-              server="smtp.gmail.com", port=587, username='john.christian.private@gmail.com', password='M1nd0v3rM4tt3r',
+              server="smtp.gmail.com", port=587, username=GMAIL_U, password=GMAIL_P,
               use_tls=True):
     """Compose and send email with provided info and attachments.
 
@@ -95,7 +97,7 @@ def showImage(img):
     #Display the image
     image = subprocess.Popen(["feh", "--hide-pointer", "-x", "-q", "-B", "black", "-g", "1280x720",img])
 
-    send_mail("john.christian.private@gmail.com",["john.christian.private@gmail.com"], "Someone's at the door", "Who dat?", [img]);
+    send_mail(GMAIL_U,[GMAIL_U], "Someone's at the door", "Who dat?", [img]);
 
     time.sleep(5);
     image.kill()
